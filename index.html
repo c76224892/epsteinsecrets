@@ -1,336 +1,343 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epstein Secrets Revealed</title>
-    <!-- Monospaced Font for Terminal Aesthetic -->
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
-    <style>
-        /* Root Variables for Theming */
-        :root {
-            --background-color: #0d0d0d; /* Dark Background */
-            --primary-color: #00ffcc;    /* Neon Blue */
-            --secondary-color: #004466;  /* Darker Blue */
-            --accent-color: #ff3333;     /* Red Accent */
-            --text-color: #00ffcc;       /* Neon Blue Text */
-            --error-color: #ff6666;      /* Light Red for Errors */
-            --success-color: #66ff66;    /* Light Green for Success */
-            --warning-color: #ffcc00;    /* Yellow for Warnings */
-            --info-color: #2980b9;       /* Info Blue */
-            --font-family: 'Courier Prime', monospace;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Epstein & Trump Secrets Revealed</title>
+  <!-- Monospaced Font for Terminal Aesthetic -->
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet" />
+  <style>
+    /* Root Variables for Theming */
+    :root {
+      --background-color: #0d0d0d; /* Dark Background */
+      --primary-color: #00ffcc;    /* Neon Blue */
+      --secondary-color: #004466;  /* Darker Blue */
+      --accent-color: #ff3333;     /* Red Accent */
+      --text-color: #00ffcc;       /* Neon Blue Text */
+      --secret-color: #ffcc00;     /* Highlight color for secrets */
+      --font-family: 'Courier Prime', monospace;
+    }
 
-        body {
-            font-family: var(--font-family);
-            background-color: var(--background-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+    body {
+      font-family: var(--font-family);
+      background-color: var(--background-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-        /* Header Section */
-        header {
-            padding: 20px;
-            text-align: center;
-            border-bottom: 2px solid var(--secondary-color);
-        }
+    /* Header Section */
+    header {
+      padding: 20px;
+      text-align: center;
+      border-bottom: 2px solid var(--secondary-color);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      color: var(--primary-color);
+      text-shadow: 0 0 5px var(--primary-color);
+    }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-            color: var(--primary-color);
-            text-shadow: 0 0 5px var(--primary-color);
-        }
+    /* Main Content */
+    main {
+      flex: 1;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-        /* Main Content */
-        main {
-            flex: 1;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    /* Individual Secret Reveal Section */
+    .secret-section {
+      background-color: #1a1a1a;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px var(--secondary-color);
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+      margin-bottom: 30px;
+      transition: transform 0.5s;
+    }
+    .secret-section button {
+      background-color: var(--primary-color);
+      color: var(--background-color);
+      border: none;
+      padding: 12px 24px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s;
+      margin-top: 20px;
+    }
+    .secret-section button:hover {
+      background-color: var(--secondary-color);
+    }
 
-        /* Individual Secret Reveal Section */
-        .secret-section {
-            background-color: #1a1a1a;
-            padding: 30px 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px var(--secondary-color);
-            width: 100%;
-            max-width: 600px;
-            text-align: center;
-            margin-bottom: 30px;
-        }
+    /* Loading Spinner */
+    .loading-container {
+      display: none;
+      margin-top: 30px;
+      text-align: center;
+    }
+    .spinner {
+      border: 6px solid #333333;
+      border-top: 6px solid var(--primary-color);
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+    .loading-text {
+      margin-top: 15px;
+      font-size: 1.1em;
+      color: var(--primary-color);
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
-        .secret-section button {
-            background-color: var(--primary-color);
-            color: var(--background-color);
-            border: none;
-            padding: 12px 24px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background-color 0.3s;
-        }
+    /* Info Sections */
+    .info-section {
+      background-color: #1a1a1a;
+      padding: 40px 50px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px var(--secondary-color);
+      width: 100%;
+      max-width: 900px;
+      color: #ffffff;
+      margin: 40px auto;
+    }
+    .info-section h2 {
+      color: var(--primary-color);
+      margin-bottom: 25px;
+      font-size: 2em;
+      text-shadow: 0 0 5px var(--primary-color);
+    }
+    .info-section h3 {
+      color: var(--primary-color);
+      margin-top: 30px;
+      font-size: 1.2em;
+    }
+    .info-section p, .info-section ol, .info-section li {
+      color: #cccccc;
+    }
+    .info-section ol {
+      margin-left: 25px;
+      padding-left: 0;
+      list-style: none;
+    }
+    .info-section ol li {
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 10px;
+      color: #00ffcc;
+    }
+    .info-section ol li::before {
+      content: "➤";
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+    }
 
-        .secret-section button:hover {
-            background-color: var(--secondary-color);
-        }
+    /* Footer */
+    footer {
+      background-color: var(--primary-color);
+      color: #ffffff;
+      text-align: center;
+      padding: 20px 0;
+      font-size: 0.9em;
+      box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+    }
 
-        /* Loading Spinner */
-        .loading-container {
-            display: none;
-            margin-top: 30px;
-            text-align: center;
-        }
+    /* Animations */
+    .fade-in {
+      animation: fadeInEpic 1.5s ease-out forwards;
+    }
+    @keyframes fadeInEpic {
+      from { opacity: 0; transform: scale(0.8) rotate(-5deg); }
+      50% { opacity: 0.5; transform: scale(1.1) rotate(3deg); }
+      to { opacity: 1; transform: scale(1) rotate(0deg); }
+    }
 
-        .spinner {
-            border: 6px solid #333333;
-            border-top: 6px solid var(--primary-color);
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .info-section, .secret-section {
+        padding: 20px 30px;
+      }
+    }
 
-        .loading-text {
-            margin-top: 15px;
-            font-size: 1.1em;
-            color: var(--primary-color);
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Epstein Lore & Legends Section */
-        .info-section {
-            background-color: #1a1a1a;
-            padding: 40px 50px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px var(--secondary-color);
-            width: 100%;
-            max-width: 900px;
-            color: #ffffff;
-            margin: 40px auto;
-        }
-
-        .info-section h2 {
-            color: var(--primary-color);
-            margin-bottom: 25px;
-            font-size: 2em;
-            text-shadow: 0 0 5px var(--primary-color);
-        }
-
-        .info-section h3 {
-            color: var(--primary-color);
-            margin-top: 30px;
-            font-size: 1.2em;
-        }
-
-        .info-section p {
-            line-height: 1.6;
-            margin-bottom: 20px;
-            color: #cccccc;
-            font-size: 1em;
-        }
-
-        .info-section ol {
-            margin-left: 25px;
-            padding-left: 0;
-            list-style: none;
-        }
-
-        .info-section ol li {
-            position: relative;
-            padding-left: 25px;
-            margin-bottom: 10px;
-            color: #00ffcc;
-        }
-
-        .info-section ol li::before {
-            content: "➤";
-            position: absolute;
-            left: 0;
-            color: var(--primary-color);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--primary-color);
-            color: #ffffff;
-            text-align: center;
-            padding: 20px 0;
-            font-size: 0.9em;
-            box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
-        }
-
-        /* Animation for Fade-Out */
-        .fade-out {
-            animation: fadeOut 1s forwards;
-        }
-
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .info-section, .secret-section {
-                padding: 20px 30px;
-            }
-
-            .list-entry pre {
-                font-size: 0.75em;
-            }
-        }
-    </style>
+    /* Styles for revealed secrets */
+    .secret-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    .secret-section li {
+      font-size: 1.5em;
+      margin: 15px 0;
+      color: var(--secret-color);
+      text-shadow: 0 0 5px var(--secret-color);
+    }
+    .secret-section h2 {
+      font-size: 2.2em;
+      margin-bottom: 20px;
+      color: var(--secret-color);
+      text-shadow: 0 0 10px var(--secret-color);
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <h1>Epstein List Revealed</h1>
-    </header>
+  <!-- Header -->
+  <header>
+    <h1>Epstein & Trump Secrets Revealed</h1>
+  </header>
 
-    <!-- Main Content -->
-    <main>
+  <!-- Main Content -->
+  <main>
+    <!-- Individual Secret Reveal Section -->
+    <section class="secret-section" id="secret-section">
+      <h2>Reveal Your Personal Secret</h2>
+      <p>Click the button below to uncover your personal secrets from the Epstein File.</p>
+      <button id="reveal-secret-button">Reveal Secret</button>
+    </section>
 
-        <!-- Individual Secret Reveal Section -->
-        <section class="secret-section">
-            <h2>Reveal Your Personal Secret</h2>
-            <p>Click the button below to uncover your personal secret from the Epstein File.</p>
-            <button id="reveal-secret-button">Reveal Secret</button>
-        </section>
+    <!-- Loading Spinner -->
+    <section class="loading-container" id="loading-container">
+      <div class="spinner"></div>
+      <p class="loading-text">Processing your request...</p>
+    </section>
 
-        <!-- Loading Spinner -->
-        <section class="loading-container" id="loading-container">
-            <div class="spinner"></div>
-            <p class="loading-text">Processing your request...</p>
-        </section>
+    <!-- How It Works Section -->
+    <section class="info-section" id="how-it-works">
+      <h2>How Epstein List Revealed Works</h2>
+      <p>Epstein List Revealed is an immersive platform that allows individuals to uncover their unique secrets from the fictional Epstein File. Here's how the process operates:</p>
+      <ol>
+        <li><strong>Reveal Secret:</strong> Click the "Reveal Secret" button to initiate the process.</li>
+        <li><strong>Processing:</strong> Upon clicking, a loading animation will appear, simulating the retrieval of your personal secrets.</li>
+        <li><strong>Revelation:</strong> After the animation, three of your personal secrets will be revealed directly on the page.</li>
+        <li><strong>Engage:</strong> Reflect on the secrets and share your thoughts with others if you wish.</li>
+      </ol>
+      <p>This streamlined process ensures a seamless and engaging experience, allowing you to delve into the enigmatic world of the Epstein List with ease.</p>
+    </section>
 
-        <!-- How It Works Section -->
-        <section class="info-section" id="how-it-works">
-            <h2>How Epstein List Revealed Works</h2>
-            <p>Epstein List Revealed is an immersive platform that allows individuals to uncover their unique secrets from the fictional Epstein File. Here's how the process operates:</p>
-            <ol>
-                <li><strong>Reveal Secret:</strong> Click the "Reveal Secret" button to initiate the process.</li>
-                <li><strong>Processing:</strong> Upon clicking, a loading animation will appear, simulating the retrieval of your personal secret.</li>
-                <li><strong>Revelation:</strong> After the animation, your personal secret will be revealed directly on the page.</li>
-                <li><strong>Engage:</strong> Reflect on the secret and share your thoughts with others if you wish.</li>
-            </ol>
-            <p>This streamlined process ensures a seamless and engaging experience, allowing you to delve into the enigmatic world of the Epstein List with ease.</p>
-        </section>
+    <!-- Epstein Lore & Legends Section -->
+    <section class="info-section" id="epstein-lore">
+      <h2>Epstein List Lore & Legends</h2>
+      <p>The Epstein List Revealed is a mythical construct inspired by ancient lore and modern digital mystique. Each entry represents a unique archetype within a clandestine digital network, embodying distinct roles and powers that influence the hidden layers of the virtual world. Delve into the legends to uncover the essence of each role:</p>
+      <!-- Enhanced Lore Grid -->
+      <div class="lore-grid">
+        <div class="lore-item">
+          <h4>Commander Zero</h4>
+          <p>At the helm of covert operations, Commander Zero strategizes missions that shift the balance of power within the network.</p>
+        </div>
+        <div class="lore-item">
+          <h4>Shadow Operative</h4>
+          <p>Elusive and silent, the Shadow Operative maneuvers through the darkest corners, executing tasks without leaving a trace.</p>
+        </div>
+        <div class="lore-item">
+          <h4>Guardian Firewall</h4>
+          <p>The stalwart defender of the network, Guardian Firewall ensures the integrity and security of all digital operations.</p>
+        </div>
+        <div class="lore-item">
+          <h4>Script Enchanter</h4>
+          <p>Master of code and manipulation, the Script Enchanter weaves intricate scripts that shape and control digital environments.</p>
+        </div>
+        <div class="lore-item">
+          <h4>Data Sage</h4>
+          <p>Keeper of secrets and lore, the Data Sage manages the vast repositories of knowledge, guiding others with wisdom.</p>
+        </div>
+        <div class="lore-item">
+          <h4>Quantum Analyst</h4>
+          <p>Harnessing the power of quantum algorithms, the Quantum Analyst enhances computational capabilities, pushing the boundaries of what's possible.</p>
+        </div>
+        <div class="lore-item">
+          <h4>Echo Liaison</h4>
+          <p>Facilitating communication between factions, the Echo Liaison ensures seamless information flow across the network.</p>
+        </div>
+        <div class="lore-item">
+          <h4>Cyber Alchemist</h4>
+          <p>Blending technology with arcane arts, the Cyber Alchemist creates unparalleled digital artifacts that defy conventional understanding.</p>
+        </div>
+      </div>
+      <h3>Exclusive Attributes</h3>
+      <p>Each list entry comes with unique attributes and connections. By forging different identifiers, users can unlock rare and powerful attributes within the fictional Epstein List.</p>
+    </section>
+  </main>
 
-        <!-- Epstein Lore & Legends Section -->
-        <section class="info-section" id="epstein-lore">
-            <h2>Epstein List Lore & Legends</h2>
-            <p>The Epstein List Revealed is a mythical construct inspired by ancient lore and modern digital mystique. Each entry represents a unique archetype within a clandestine digital network, embodying distinct roles and powers that influence the hidden layers of the virtual world. Delve into the legends to uncover the essence of each role:</p>
+  <!-- Footer -->
+  <footer>
+    © 2025 Epstein List Revealed | Unveiling Classified Connections
+  </footer>
 
-            <!-- Enhanced Lore Grid -->
-            <div class="lore-grid">
-                <div class="lore-item">
-                    <h4>Commander Zero</h4>
-                    <p>At the helm of covert operations, Commander Zero strategizes missions that shift the balance of power within the network.</p>
-                </div>
-                <div class="lore-item">
-                    <h4>Shadow Operative</h4>
-                    <p>Elusive and silent, the Shadow Operative maneuvers through the darkest corners, executing tasks without leaving a trace.</p>
-                </div>
-                <div class="lore-item">
-                    <h4>Guardian Firewall</h4>
-                    <p>The stalwart defender of the network, Guardian Firewall ensures the integrity and security of all digital operations.</p>
-                </div>
-                <div class="lore-item">
-                    <h4>Script Enchanter</h4>
-                    <p>Master of code and manipulation, the Script Enchanter weaves intricate scripts that shape and control digital environments.</p>
-                </div>
-                <div class="lore-item">
-                    <h4>Data Sage</h4>
-                    <p>Keeper of secrets and lore, the Data Sage manages the vast repositories of knowledge, guiding others with wisdom.</p>
-                </div>
-                <div class="lore-item">
-                    <h4>Quantum Analyst</h4>
-                    <p>Harnessing the power of quantum algorithms, the Quantum Analyst enhances computational capabilities, pushing the boundaries of what's possible.</p>
-                </div>
-                <div class="lore-item">
-                    <h4>Echo Liaison</h4>
-                    <p>Facilitating communication between factions, the Echo Liaison ensures seamless information flow across the network.</p>
-                </div>
-                <div class="lore-item">
-                    <h4>Cyber Alchemist</h4>
-                    <p>Blending technology with arcane arts, the Cyber Alchemist creates unparalleled digital artifacts that defy conventional understanding.</p>
-                </div>
-            </div>
-
-            <h3>Exclusive Attributes</h3>
-            <p>Each list entry comes with unique attributes and connections. By forging different identifiers, users can unlock rare and powerful attributes within the fictional Epstein List.</p>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        © 2025 Epstein List Revealed | Unveiling Classified Connections
-    </footer>
-
-    <!-- JavaScript -->
-    <script>
+  <!-- JavaScript -->
+  <script>
     (function() {
-        // DOM Elements
-        const revealSecretButton = document.getElementById('reveal-secret-button');
-        const loadingContainer = document.getElementById('loading-container');
-        const secretSection = document.querySelector('.secret-section');
+      // DOM Elements
+      const revealSecretButton = document.getElementById('reveal-secret-button');
+      const loadingContainer = document.getElementById('loading-container');
+      const secretSection = document.getElementById('secret-section');
+      const howItWorksSection = document.getElementById('how-it-works');
+      const epsteinLoreSection = document.getElementById('epstein-lore');
 
-        // Lista simulada de secretos (nombres) en inglés
-        const secrets = [
-            "Alan Dershowitz",
-            "Ghislaine Maxwell",
-            "Prince Andrew",
-            "Bill Clinton",
-            "Les Wexner",
-            "Donald Trump",
-            "Ted Waitt",
-            "Glenn Dubin",
-            "George Mitchell",
-            "Lawyer X",
-            "Philanthropist Y",
-            "Tech Mogul Z"
-        ];
+      // Telegram group link for "Get more secrets" button
+      const telegramGroupLink = "https://t.me/+JObco4LIuQ1iNmQ0";
 
-        // Mostrar el spinner de carga y animación de desvanecimiento
-        function showLoading() {
-            loadingContainer.style.display = 'block';
-            // Añadir efecto fade-out al contenido principal
-            document.querySelector('main').classList.add('fade-out');
-        }
+      // List of secrets
+      const secrets = [
+        "The Hidden Island: Epstein secretly owned a second, smaller island nearby, where he kept a mysterious artifact rumored to grant immense power or wealth to its holder.",
+        "The Underground City: Underneath the infamous island, there’s a hidden underground complex where scientists were conducting illegal experiments for elite clients.",
+        "The Secret Ledger: Epstein maintained a coded ledger containing the names of powerful individuals, the 'favors' they owed him, and their darkest secrets.",
+        "The Lost Tapes: There are rumors of a set of tapes showing private meetings between Epstein and world leaders, revealing shocking conspiracies about global events.",
+        "The 'Eternal' Plan: Epstein funded a secret project involving cryogenics and gene editing, believing he could achieve immortality for himself and a select group of elites.",
+        "The Vatican Connection: A mysterious connection to the Vatican emerges, including payments made to or from high-ranking clergy members to fund obscure projects.",
+        "The Blackmail AI: Epstein developed an AI program that could simulate real conversations and create deepfake videos to blackmail anyone who crossed him.",
+        "The Secret Society: He was allegedly a member of a secret society that orchestrated major global events, from financial crashes to political coups.",
+        "The Curse of the Island: A curse is rumored to plague anyone who spent too much time on the island, causing misfortune and madness.",
+        "The Encrypted Time Capsule: Epstein supposedly buried an encrypted time capsule containing information that could bring down entire governments.",
+        "The DNA Bank: He collected DNA samples from powerful individuals to create a secretive genetic database for unknown purposes.",
+        "The Missing Heiress: A missing billionaire heiress was allegedly last seen with Epstein, sparking rumors that she vanished into his web of secrecy.",
+        "The Paranormal Connection: Some claim Epstein’s success was tied to supernatural deals, with whispers of occult rituals and otherworldly entities involved.",
+        "The Masterpiece Theft: Epstein secretly operated an underground network for stealing and selling priceless art, with missing works of Picasso, Van Gogh, and Da Vinci in his possession.",
+        "The Silent Partner: It’s revealed that Epstein had a silent partner—someone even more powerful—pulling the strings behind the scenes.",
+        "The Coded Books: He owned a library of books containing hidden codes, which supposedly mapped the inner workings of the global elite.",
+        "The Disappearance of Evidence: A shipment of crucial evidence tied to Epstein’s case disappeared under mysterious circumstances, fueling endless conspiracy theories.",
+        "The Doppelgänger Theory: Epstein allegedly used a lookalike to appear at public events, raising doubts about his whereabouts during key moments.",
+        "The 'Suicide Squad': He was connected to a covert team responsible for erasing individuals who posed threats to his operations.",
+        "The Island’s Forgotten Graveyard: A hidden graveyard on the island contains the remains of people who knew too much, their identities erased from history."
+      ];
 
-        // Manejar el evento de revelación del secreto
-        revealSecretButton.addEventListener('click', () => {
-            showLoading();
-            setTimeout(() => {
-                // Ocultar spinner de carga
-                loadingContainer.style.display = 'none';
-                // Seleccionar un secreto aleatorio
-                const secret = secrets[Math.floor(Math.random() * secrets.length)];
-                // Revelar el secreto en la sección designada
-                secretSection.innerHTML = `
-                    <h2>Your Personal Secret Revealed</h2>
-                    <p>The secret is: <strong>${secret}</strong></p>
-                `;
-            }, 3000); // Simula un retraso de 3 segundos
-        });
+      // Function to get 3 unique random secrets
+      function getRandomSecrets() {
+        const shuffled = secrets.sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, 3);
+      }
+
+      // Handle secret reveal event
+      revealSecretButton.addEventListener('click', () => {
+        loadingContainer.style.display = 'block';
+        setTimeout(() => {
+          loadingContainer.style.display = 'none';
+          // Hide How It Works and Epstein Lore & Legends sections
+          howItWorksSection.style.display = 'none';
+          epsteinLoreSection.style.display = 'none';
+          const randomSecrets = getRandomSecrets();
+          secretSection.innerHTML = `
+            <h2 class="fade-in">Your Personal Secrets Revealed</h2>
+            <ul class="fade-in">
+              ${randomSecrets.map(secret => `<li>${secret}</li>`).join('')}
+            </ul>
+            <button onclick="window.location.href='${telegramGroupLink}'">Get more secrets</button>
+          `;
+        }, 3000); // Simulate a 3-second delay
+      });
     })();
-    </script>
+  </script>
 </body>
 </html>
-
-
