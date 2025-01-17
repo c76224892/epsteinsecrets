@@ -172,7 +172,7 @@
             box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
         }
 
-        /* Animation for Redirect */
+        /* Animation for Fade-Out */
         .fade-out {
             animation: fadeOut 1s forwards;
         }
@@ -224,8 +224,8 @@
             <ol>
                 <li><strong>Reveal Secret:</strong> Click the "Reveal Secret" button to initiate the process.</li>
                 <li><strong>Processing:</strong> Upon clicking, a loading animation will appear, simulating the retrieval of your personal secret.</li>
-                <li><strong>Redirection:</strong> After the animation, you will be automatically redirected to our Telegram group, where your individual secret will be shared.</li>
-                <li><strong>Engage:</strong> Join the Telegram group to connect with others and explore the depths of the Epstein List Lore.</li>
+                <li><strong>Revelation:</strong> After the animation, your personal secret will be revealed directly on the page.</li>
+                <li><strong>Engage:</strong> Reflect on the secret and share your thoughts with others if you wish.</li>
             </ol>
             <p>This streamlined process ensures a seamless and engaging experience, allowing you to delve into the enigmatic world of the Epstein List with ease.</p>
         </section>
@@ -288,33 +288,49 @@
         // DOM Elements
         const revealSecretButton = document.getElementById('reveal-secret-button');
         const loadingContainer = document.getElementById('loading-container');
+        const secretSection = document.querySelector('.secret-section');
 
-        // Telegram Group Link - Replace with your actual Telegram group URL
-        const TELEGRAM_GROUP_LINK = "https://t.me/YourTelegramGroupLink";
+        // Lista simulada de secretos (nombres) en inglés
+        const secrets = [
+            "Alan Dershowitz",
+            "Ghislaine Maxwell",
+            "Prince Andrew",
+            "Bill Clinton",
+            "Les Wexner",
+            "Donald Trump",
+            "Ted Waitt",
+            "Glenn Dubin",
+            "George Mitchell",
+            "Lawyer X",
+            "Philanthropist Y",
+            "Tech Mogul Z"
+        ];
 
-        // Show Loading Spinner and Fade-Out Animation
+        // Mostrar el spinner de carga y animación de desvanecimiento
         function showLoading() {
             loadingContainer.style.display = 'block';
-            // Add fade-out to main content
+            // Añadir efecto fade-out al contenido principal
             document.querySelector('main').classList.add('fade-out');
         }
 
-        // Redirect to Telegram Group after Animation
-        function redirectToTelegram() {
-            // After the fade-out animation, redirect to Telegram
-            setTimeout(() => {
-                window.location.href = TELEGRAM_GROUP_LINK;
-            }, 1000); // 1 second matches the CSS animation duration
-        }
-
-        // Reveal Secret Button Event
+        // Manejar el evento de revelación del secreto
         revealSecretButton.addEventListener('click', () => {
             showLoading();
-            redirectToTelegram();
+            setTimeout(() => {
+                // Ocultar spinner de carga
+                loadingContainer.style.display = 'none';
+                // Seleccionar un secreto aleatorio
+                const secret = secrets[Math.floor(Math.random() * secrets.length)];
+                // Revelar el secreto en la sección designada
+                secretSection.innerHTML = `
+                    <h2>Your Personal Secret Revealed</h2>
+                    <p>The secret is: <strong>${secret}</strong></p>
+                `;
+            }, 3000); // Simula un retraso de 3 segundos
         });
-
     })();
     </script>
 </body>
 </html>
+
 
